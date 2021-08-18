@@ -15,7 +15,8 @@ fn main() {
         } else if index % 2 == 0 {
             let mut current_mower = mower_list.pop().expect("No mower found");
             move_mower(line, &mut current_mower, &lawn);
-            println!("{:#?}", current_mower);
+            //println!("{:#?}", current_mower);
+            current_mower.print_position();
         }
     }
 }
@@ -152,6 +153,15 @@ impl Mower {
             y: y,
             direction: direction,
         }
+    }
+    fn print_position(&self) {
+        let direction = match &self.direction {
+            Direction::North => 'N',
+            Direction::East => 'E',
+            Direction::West => 'W',
+            Direction::South => 'S',
+        };
+        println!("{} {} {}", &self.x, &self.y, direction);
     }
 }
 
